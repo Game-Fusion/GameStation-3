@@ -1,0 +1,40 @@
+for i,v in pairs(peripheral.getNames()) do
+  if peripheral.getType(v) == "drive" then
+  
+term.setBackgroundColour(colours.brown)
+term.setTextColour(colours.white)
+term.clear()
+center(8,"MyVinyl.")
+center(10,"Play your Vinyl records on your GS3!")
+sleep(1.5)
+term.clear()
+term.setCursorPos(1,1)
+term.setBackgroundColour(colours.white)
+term.setTextColour(colours.brown)
+term.clearLine()
+center(1,"MyVinyl")
+term.setBackgroundColour(colours.brown)
+term.setTextColour(colours.white)
+center(8,"Please insert record.")
+
+while true do
+  if disk.isPresent("v") and disk.hasData("(v)") then
+    center(8,"Floppy Disk inserted.")
+    center(10,"Please insert a music disc.")
+    sleep(2)
+    draw()
+ elseif disk.isPresent("v") and disk.hasAudio("(v)") then
+    term.clear()
+    term.setCursorPos(1,1)
+    term.setBackgroundColour(colours.white)
+    term.setTextColour(colours.brown)
+    term.clearLine()
+    center(1,"MyVinyl")
+    term.setBackgroundColour(colours.brown)
+    term.setTextColour(colours.white)
+    center(6,"Record Inserted:")
+    center(8,disk.getAudioTitle("(v)"))
+else end
+end
+end
+end
