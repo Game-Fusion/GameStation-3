@@ -1,0 +1,84 @@
+local w,h = term.getSize()
+ 
+function drawStart()
+  term.setBackgroundColour(colours.red)
+  term.setCursorPos(1,h-1)
+  term.write("Power(i)")
+  term.setCursorPos(1,h-3)
+  term.write(" Games  ")
+  term.setCursorPos(1,h-2)
+  term.write("Settings")
+  term.setCursorPos(1,h-4)
+  term.write(" Update ")
+  term.setCursorPos(1,h-5)
+  term.write("  Info  ")
+  term.setCursorPos(1,h-6)
+  term.write(" MyApps ")
+  term.setCursorPos(1,h-7)
+  term.write("DiskLoad")
+end
+ 
+function draw()
+  term.setBackgroundColour(colours.white)
+  term.clear()
+  term.setCursorPos(1,19)
+  term.setBackgroundColour(colours.blue)
+  term.clearLine()
+  term.setCursorPos(1,1)
+  term.clearLine()
+  term.setCursorPos(1,19)
+  term.setBackgroundColour(colours.green)
+  term.setTextColour(colours.white)
+  write("Start ")
+  term.setTextColour(colours.white)
+  term.setBackgroundColour(colours.blue)
+  center(1," GameStation 3 Menu ")
+end
+draw()
+
+menu = 0
+while true do
+  local evt, button, x, y = os.pullEvent("mouse_click")
+  if x >= 1 and x <= 5 and menu == 0 then
+    draw()
+    drawStart()
+    menu = 1
+  elseif x >= 1 and x <= 5 and y == 19 and menu == 1 then
+    draw()
+    menu = 0
+  elseif x >= 1 and x <= 8 and y == h - 1 and menu == 1 then
+    term.setBackgroundColour(colours.lightGrey)
+    term.setTextColour(colours.white)
+    term.clear()
+    center(9,"Shutting Down...")
+    sleep(1)
+    term.setBackgroundColour(colours.grey)
+    term.clear()
+    center(9,"Shutting Down...")
+    sleep(0.25)
+    term.setBackgroundColour(colours.black)
+    term.clear()
+    center(9,"Shutting Down...")
+    sleep(0.25)
+    os.shutdown()
+    menu = 0
+  elseif x >= 1 and x <= 8 and y == h - 2 and menu == 1 then
+    shell.run("/GS3/Settings")
+    menu = 0
+  elseif x >= 1 and x <= 8 and y == h - 3 and menu == 1 then
+    shell.run("/GS3/GamesList")
+    menu = 0
+  elseif x >= 1 and x <= 8 and y == h - 4 and menu == 1 then
+    shell.run("/GS3/Updater")
+    menu = 0
+  elseif x >= 1 and x <= 8 and y == h - 5 and menu == 1 then
+    shell.run("/GS3/Info")
+  elseif x >= 1 and x <= 8 and y == h - 6 and menu == 1 then
+    shell.run("/GS3/MyApps")
+  elseif x >= 1 and x <= 8 and y == h - 7 and menu == 1 then
+    shell.run("/GS3/DiskLoader")
+      else
+    draw()
+    menu = 0
+  end
+end
