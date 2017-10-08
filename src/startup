@@ -1,0 +1,24 @@
+function center(y,string)
+  local w,h = term.getSize()
+  local x = (w/2)-(#string/2)
+  term.setCursorPos(x,y)
+  print(string)
+end
+
+function centerSlowPrint(y,string)
+  local w,h = term.getSize()
+  local x = (w/2)-(#string/2)
+  term.setCursorPos(x,y)
+  textutils.slowPrint(string)
+end
+
+term.setBackgroundColour(colours.blue)
+term.setTextColour(colours.white)
+term.clear()
+centerSlowPrint(8, "Welcome to GameStation 3.")
+sleep(1.25)
+centerSlowPrint(10, "Live in your world,")
+sleep(0.25)
+center(11, "play in ours.")
+sleep(2)
+shell.run("/GS3/Menu")
