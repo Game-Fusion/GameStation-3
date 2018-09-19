@@ -1,6 +1,6 @@
-local w,h = term.getSize()
+local w, h = term.getSize()
  
-function drawStart()
+local function drawStart()
   term.setBackgroundColour(colours.red)
   term.setCursorPos(1,h-1)
   term.write("Power(i)")
@@ -18,7 +18,7 @@ function drawStart()
   term.write("DiskLoad")
 end
  
-function draw()
+local function draw()
   term.setBackgroundColour(colours.white)
   term.clear()
   term.setCursorPos(1,19)
@@ -77,7 +77,8 @@ while true do
     shell.run("/GS3/MyApps")
   elseif x >= 1 and x <= 8 and y == h - 7 and menu == 1 then
     shell.run("/GS3/DiskLoader")
-      else
+    
+  else
     draw()
     menu = 0
   end
